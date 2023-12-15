@@ -102,7 +102,13 @@ class MusicSessionCallbackAdapter(
         if (intent != null) {
             intent = Intent(intent)
             intent.putExtra("mediaId", metadata.mediaId)
-            mediaSession.setSessionActivity(PendingIntent.getActivity(context, 1000, intent, 0))
+            val pendingIntentFlags = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                PendingIntent.FLAG_IMMUTABLE
+            } else {
+                0
+            }
+            val pendingIntent = PendingIntent.getActivity(context, 1000, intent, pendingIntentFlags)
+            mediaSession.setSessionActivity(pendingIntent)
         } else {
             mediaSession.setSessionActivity(null)
         }
