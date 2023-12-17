@@ -10,6 +10,7 @@
         <service
             android:name=".service.MusicPlayerService"
             android:exported="true"
+            android:foregroundServiceType="mediaPlayback"
             android:permission="${applicationId}.FLUTTER_MUSIC_PLAYER">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
