@@ -105,9 +105,6 @@ class NotificationAdapter(
                  */
                 if (!isForegroundService) {
                     context.startService(Intent(context, MusicPlayerService::class.java))
-                    if (notification != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                        notification.flags = FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
-                    }
                     context.startForeground(
                         NotificationBuilder.NOW_PLAYING_NOTIFICATION,
                         notification
