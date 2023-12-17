@@ -3,6 +3,7 @@ package tech.soit.quiet.service
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
 import android.graphics.Bitmap
 import android.os.Build
 import android.support.v4.media.session.MediaSessionCompat
@@ -104,6 +105,9 @@ class NotificationAdapter(
                  */
                 if (!isForegroundService) {
                     context.startService(Intent(context, MusicPlayerService::class.java))
+                    if (notification != null && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                        notification.flags = FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+                    }
                     context.startForeground(
                         NotificationBuilder.NOW_PLAYING_NOTIFICATION,
                         notification
