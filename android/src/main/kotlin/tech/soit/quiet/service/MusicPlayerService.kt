@@ -21,9 +21,9 @@ class MusicPlayerService : MediaBrowserServiceCompat(), LifecycleOwner {
             "tech.soit.quiet.session.LaunchActivityAction"
     }
 
-    public val lifecycle = LifecycleRegistry(this)
+    public override val lifecycle = LifecycleRegistry(this)
 
-    override fun getLifecycle(): Lifecycle = lifecycle
+    //public fun getLifecycle(): Lifecycle = lifecycle
 
     private val playerSession by lazy { MusicPlayerSessionImpl(this) }
 
